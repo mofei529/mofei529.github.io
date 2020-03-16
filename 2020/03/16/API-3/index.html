@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>API-3&#39; | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="学习来源网易云课堂：python全栈工程师微专业：Django章节的API内容 课程目标 构建对网站内容的API：增、删、改、查1.创建posts应用，构建相应的API1python manage.py startapp posts 1.1配置posts应用进入blog&#x2F;settings.py文件配置INSTALLED_APPS   进入blog&#x2F;urls.py文件配置posts的api路由（需要">
+<meta property="og:type" content="article">
+<meta property="og:title" content="API-3&#39;">
+<meta property="og:url" content="http://yoursite.com/2020/03/16/API-3/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="学习来源网易云课堂：python全栈工程师微专业：Django章节的API内容 课程目标 构建对网站内容的API：增、删、改、查1.创建posts应用，构建相应的API1python manage.py startapp posts 1.1配置posts应用进入blog&#x2F;settings.py文件配置INSTALLED_APPS   进入blog&#x2F;urls.py文件配置posts的api路由（需要">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200313155328813.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L21vZmVpNjI5,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200313155456974.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200313155855180.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L21vZmVpNjI5,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200313160216740.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200313161212550.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L21vZmVpNjI5,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200313161554884.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L21vZmVpNjI5,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200313161923375.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L21vZmVpNjI5,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200313161936942.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L21vZmVpNjI5,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/2020031316231618.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L21vZmVpNjI5,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200313162924665.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L21vZmVpNjI5,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200313163652616.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L21vZmVpNjI5,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200313163714253.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L21vZmVpNjI5,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/2020031316405676.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L21vZmVpNjI5,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200313164504189.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L21vZmVpNjI5,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200313164747655.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L21vZmVpNjI5,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200313165010505.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L21vZmVpNjI5,size_16,color_FFFFFF,t_70">
+<meta property="article:published_time" content="2020-03-16T02:55:50.000Z">
+<meta property="article:modified_time" content="2020-03-16T03:00:43.018Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="Django API">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://img-blog.csdnimg.cn/20200313155328813.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L21vZmVpNjI5,size_16,color_FFFFFF,t_70">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="&#39;django-API-3" class="article article-type-&#39;django" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/03/16/API-3/" class="article-date">
+  <time datetime="2020-03-16T02:55:50.000Z" itemprop="datePublished">2020-03-16</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      API-3&#39;
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="学习来源"><a href="#学习来源" class="headerlink" title="学习来源"></a>学习来源</h1><p>网易云课堂：python全栈工程师微专业：Django章节的API内容</p>
+<h1 id="课程目标"><a href="#课程目标" class="headerlink" title="课程目标"></a>课程目标</h1><ul>
+<li>构建对网站内容的API：增、删、改、查<h2 id="1-创建posts应用，构建相应的API"><a href="#1-创建posts应用，构建相应的API" class="headerlink" title="1.创建posts应用，构建相应的API"></a>1.创建posts应用，构建相应的API</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python manage.py startapp posts</span><br></pre></td></tr></table></figure>
+<h3 id="1-1配置posts应用"><a href="#1-1配置posts应用" class="headerlink" title="1.1配置posts应用"></a>1.1配置posts应用</h3>进入blog/settings.py文件配置INSTALLED_APPS</li>
+</ul>
+<p><img src="https://img-blog.csdnimg.cn/20200313155328813.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L21vZmVpNjI5,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<p>进入blog/urls.py文件配置posts的api路由（需要先在posts目录下新建urls.py文件）</p>
+<p><img src="https://img-blog.csdnimg.cn/20200313155456974.png" alt="在这里插入图片描述"></p>
+<h3 id="1-2为posts应用编写模型"><a href="#1-2为posts应用编写模型" class="headerlink" title="1.2为posts应用编写模型"></a>1.2为posts应用编写模型</h3><p>进入posts/models.py编写应用的模型</p>
+<p><img src="https://img-blog.csdnimg.cn/20200313155855180.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L21vZmVpNjI5,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<h3 id="1-3生成样例数据，方便后续测试"><a href="#1-3生成样例数据，方便后续测试" class="headerlink" title="1.3生成样例数据，方便后续测试"></a>1.3生成样例数据，方便后续测试</h3><p>进入posts/admin.py文件，把创建的模型类进行注册，增加到管理项目，方便使用admin界面登录后，发布一些博客内容，方便后续测试使用</p>
+<p><img src="https://img-blog.csdnimg.cn/20200313160216740.png" alt="在这里插入图片描述"></p>
+<h3 id="1-4为posts应用构造api"><a href="#1-4为posts应用构造api" class="headerlink" title="1.4为posts应用构造api"></a>1.4为posts应用构造api</h3><p>在posts目录下创建名为api的子目录，并在api子目录下创建serializers.py及views.py文件</p>
+<ul>
+<li>serializers.py (序列化文件：将对象重构)<br>在文件内将要读取的博客文章的内容序列化</li>
+</ul>
+<p><img src="https://img-blog.csdnimg.cn/20200313161212550.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L21vZmVpNjI5,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<ul>
+<li>views.py(api接口的视图文件)</li>
+</ul>
+<p><img src="https://img-blog.csdnimg.cn/20200313161554884.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L21vZmVpNjI5,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<p><img src="https://img-blog.csdnimg.cn/20200313161923375.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L21vZmVpNjI5,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<p><img src="https://img-blog.csdnimg.cn/20200313161936942.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L21vZmVpNjI5,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<h3 id="1-5为API配置路由"><a href="#1-5为API配置路由" class="headerlink" title="1.5为API配置路由"></a>1.5为API配置路由</h3><p>进入posts的urls.py文件，配置相应的接口路由</p>
+<p><img src="https://img-blog.csdnimg.cn/2020031316231618.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L21vZmVpNjI5,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<h2 id="2-对构建的API进行测试"><a href="#2-对构建的API进行测试" class="headerlink" title="2.对构建的API进行测试"></a>2.对构建的API进行测试</h2><p>测试之前，先打开用户登录的接口进行登录，获取返回的key后，为该测试项目配置Authorization</p>
+<h3 id="2-1获取博客文章列表的接口测试"><a href="#2-1获取博客文章列表的接口测试" class="headerlink" title="2.1获取博客文章列表的接口测试"></a>2.1获取博客文章列表的接口测试</h3><p>api接口：GET <a href="http://127.0.0.1:8000/api/posts/" target="_blank" rel="noopener">http://127.0.0.1:8000/api/posts/</a></p>
+<p>使用get请求，获取博客文章列表的内容</p>
+<p><img src="https://img-blog.csdnimg.cn/20200313162924665.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L21vZmVpNjI5,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<h3 id="2-2创建博客文章的接口测试"><a href="#2-2创建博客文章的接口测试" class="headerlink" title="2.2创建博客文章的接口测试"></a>2.2创建博客文章的接口测试</h3><p>api接口： POST <a href="http://127.0.0.1:8000/api/posts/create/" target="_blank" rel="noopener">http://127.0.0.1:8000/api/posts/create/</a></p>
+<p>使用post请求，进行文章创建，需要在Body里提交相应title，content（本次提交以x-www-form-urlencoded方式），在Headers里设置提交的两个字段的value为application/x-www-form-urlencoded，发布成功会返回该文章的详情</p>
+<p><img src="https://img-blog.csdnimg.cn/20200313163652616.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L21vZmVpNjI5,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<p><img src="https://img-blog.csdnimg.cn/20200313163714253.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L21vZmVpNjI5,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<h3 id="2-3获取某一篇博客文章的内容的接口测试"><a href="#2-3获取某一篇博客文章的内容的接口测试" class="headerlink" title="2.3获取某一篇博客文章的内容的接口测试"></a>2.3获取某一篇博客文章的内容的接口测试</h3><p>api接口：GET <a href="http://127.0.0.1:8000/api/posts/7/" target="_blank" rel="noopener">http://127.0.0.1:8000/api/posts/7/</a></p>
+<p>使用get请求，获取指定的某一篇博客文章（即在获取博客文章列表的api后，增加该博客文章的id）</p>
+<p><img src="https://img-blog.csdnimg.cn/2020031316405676.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L21vZmVpNjI5,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<h3 id="2-4修改某一篇博客文章的内容的接口测试"><a href="#2-4修改某一篇博客文章的内容的接口测试" class="headerlink" title="2.4修改某一篇博客文章的内容的接口测试"></a>2.4修改某一篇博客文章的内容的接口测试</h3><p>api接口：PATCH <a href="http://127.0.0.1:8000/api/posts/7/" target="_blank" rel="noopener">http://127.0.0.1:8000/api/posts/7/</a></p>
+<p>使用patch请求，针对指定的博客文章的api进行提交，需要在Body里提交相应title，content（本次提交以x-www-form-urlencoded方式），在Headers里设置提交的两个字段的value为application/x-www-form-urlencoded，修改成功后会返回文章内容</p>
+<p><img src="https://img-blog.csdnimg.cn/20200313164504189.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L21vZmVpNjI5,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<p><img src="https://img-blog.csdnimg.cn/20200313164747655.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L21vZmVpNjI5,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<h3 id="2-5删除某一篇博客文章的接口测试"><a href="#2-5删除某一篇博客文章的接口测试" class="headerlink" title="2.5删除某一篇博客文章的接口测试"></a>2.5删除某一篇博客文章的接口测试</h3><p>api接口：DELETE <a href="http://127.0.0.1:8000/api/posts/7/" target="_blank" rel="noopener">http://127.0.0.1:8000/api/posts/7/</a></p>
+<p>使用delete请求，针对要删除的博客文章的api进行删除，删除成功后会返回”Successfully deleted”</p>
+<p><img src="https://img-blog.csdnimg.cn/20200313165010505.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L21vZmVpNjI5,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2020/03/16/API-3/" data-id="ck7tvshc600013srq9cfccxi8" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Django-API/" rel="tag">Django API</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2020/03/16/API-2/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">API-2&#39;</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Django-API/" rel="tag">Django API</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/Django-API/" style="font-size: 10px;">Django API</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/03/">March 2020</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2020/03/16/API-3/">API-3&#39;</a>
+          </li>
+        
+          <li>
+            <a href="/2020/03/16/API-2/">API-2&#39;</a>
+          </li>
+        
+          <li>
+            <a href="/2020/03/16/API-1/">API-1&#39;</a>
+          </li>
+        
+          <li>
+            <a href="/2020/03/16/hello-world/">Hello World</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2020 John Doe<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+  </div>
+</body>
+</html>

@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>API-2&#39; | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="学习来源网易云课堂：python全栈工程师微专业：Django章节的API内容 课程目标 了解REST的含义 用户登录和退出 用户注册1.REST1.1 概念介绍)2.用户权限的API2.1使用第三方应用django-rest-auth2.1.1 django-rest-auth简介 RESTful的API 基于django-rest-framework 功能：用户注册、登录、退出、密码修改和重置">
+<meta property="og:type" content="article">
+<meta property="og:title" content="API-2&#39;">
+<meta property="og:url" content="http://yoursite.com/2020/03/16/API-2/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="学习来源网易云课堂：python全栈工程师微专业：Django章节的API内容 课程目标 了解REST的含义 用户登录和退出 用户注册1.REST1.1 概念介绍)2.用户权限的API2.1使用第三方应用django-rest-auth2.1.1 django-rest-auth简介 RESTful的API 基于django-rest-framework 功能：用户注册、登录、退出、密码修改和重置">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200313145604338.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L21vZmVpNjI5,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200313145742192.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L21vZmVpNjI5,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/2020031314593764.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L21vZmVpNjI5,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200313150038593.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L21vZmVpNjI5,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200313150847486.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L21vZmVpNjI5,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200313151806101.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200313151058375.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L21vZmVpNjI5,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200313151946759.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L21vZmVpNjI5,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200313152557252.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L21vZmVpNjI5,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200313153023226.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L21vZmVpNjI5,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200313151058375.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L21vZmVpNjI5,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200313153840628.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L21vZmVpNjI5,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200313154153317.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L21vZmVpNjI5,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200313154501134.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L21vZmVpNjI5,size_16,color_FFFFFF,t_70">
+<meta property="article:published_time" content="2020-03-16T02:55:47.000Z">
+<meta property="article:modified_time" content="2020-03-16T02:58:16.554Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="Django API">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://img-blog.csdnimg.cn/20200313145604338.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L21vZmVpNjI5,size_16,color_FFFFFF,t_70">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="&#39;django-API-2" class="article article-type-&#39;django" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/03/16/API-2/" class="article-date">
+  <time datetime="2020-03-16T02:55:47.000Z" itemprop="datePublished">2020-03-16</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      API-2&#39;
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="学习来源"><a href="#学习来源" class="headerlink" title="学习来源"></a>学习来源</h1><p>网易云课堂：python全栈工程师微专业：Django章节的API内容</p>
+<h1 id="课程目标"><a href="#课程目标" class="headerlink" title="课程目标"></a>课程目标</h1><ul>
+<li>了解REST的含义</li>
+<li>用户登录和退出</li>
+<li>用户注册<h2 id="1-REST"><a href="#1-REST" class="headerlink" title="1.REST"></a>1.REST</h2><h3 id="1-1-概念介绍"><a href="#1-1-概念介绍" class="headerlink" title="1.1 概念介绍"></a>1.1 概念介绍</h3><img src="https://img-blog.csdnimg.cn/20200313145604338.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L21vZmVpNjI5,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br><img src="https://img-blog.csdnimg.cn/20200313145742192.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L21vZmVpNjI5,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述">)<img src="https://img-blog.csdnimg.cn/2020031314593764.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L21vZmVpNjI5,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br><img src="https://img-blog.csdnimg.cn/20200313150038593.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L21vZmVpNjI5,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><h2 id="2-用户权限的API"><a href="#2-用户权限的API" class="headerlink" title="2.用户权限的API"></a>2.用户权限的API</h2><h3 id="2-1使用第三方应用django-rest-auth"><a href="#2-1使用第三方应用django-rest-auth" class="headerlink" title="2.1使用第三方应用django-rest-auth"></a>2.1使用第三方应用django-rest-auth</h3><h4 id="2-1-1-django-rest-auth简介"><a href="#2-1-1-django-rest-auth简介" class="headerlink" title="2.1.1 django-rest-auth简介"></a>2.1.1 django-rest-auth简介</h4></li>
+<li>RESTful的API</li>
+<li>基于django-rest-framework</li>
+<li>功能：用户注册、登录、退出、密码修改和重置、第三方登录<h4 id="2-1-2-安装与配置"><a href="#2-1-2-安装与配置" class="headerlink" title="2.1.2 安装与配置"></a>2.1.2 安装与配置</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip install django-rest-auth</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<p>进入blog/settings.py文件配置INSTALLED_APPS</p>
+<p><img src="https://img-blog.csdnimg.cn/20200313150847486.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L21vZmVpNjI5,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<p>进入blog/settings.py文件配置csrf_token</p>
+<p><img src="https://img-blog.csdnimg.cn/20200313151806101.png" alt="在这里插入图片描述"></p>
+<p>进入siteusers/urls.py文件配置登录、退出的路由</p>
+<p><img src="https://img-blog.csdnimg.cn/20200313151058375.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L21vZmVpNjI5,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<p>迁移数据</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python manage.py migrate</span><br></pre></td></tr></table></figure>
+
+<h3 id="2-1-3使用postman测试用户登录的api"><a href="#2-1-3使用postman测试用户登录的api" class="headerlink" title="2.1.3使用postman测试用户登录的api"></a>2.1.3使用postman测试用户登录的api</h3><p>api接口：POST <a href="http://127.0.0.1:8000/api/v1/rest-auth/login/" target="_blank" rel="noopener">http://127.0.0.1:8000/api/v1/rest-auth/login/</a><br>使用post请求方式，对该api接口进行登录，需要在Body里提交username及password（本次提交以raw的JSON格式），登录成功会返回key（即csrf_token）</p>
+<p><img src="https://img-blog.csdnimg.cn/20200313151946759.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L21vZmVpNjI5,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<h3 id="2-1-4使用postman测试用户退出的api"><a href="#2-1-4使用postman测试用户退出的api" class="headerlink" title="2.1.4使用postman测试用户退出的api"></a>2.1.4使用postman测试用户退出的api</h3><p>api接口：POST <a href="http://127.0.0.1:8000/api/v1/rest-auth/logout/" target="_blank" rel="noopener">http://127.0.0.1:8000/api/v1/rest-auth/logout/</a><br>使用post请求方式，进行用户退出，需要在Body里提交相应的username（本次提交以form-data方式），退出成功会返回”Successfully logged out.”</p>
+<p><img src="https://img-blog.csdnimg.cn/20200313152557252.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L21vZmVpNjI5,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<h2 id="2-2用户注册"><a href="#2-2用户注册" class="headerlink" title="2.2用户注册"></a>2.2用户注册</h2><h3 id="2-2-1安装与配置"><a href="#2-2-1安装与配置" class="headerlink" title="2.2.1安装与配置"></a>2.2.1安装与配置</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip install django-allauth</span><br></pre></td></tr></table></figure>
+
+<p>进入blog/settings.py文件配置INSTALLED_APPS</p>
+<p><img src="https://img-blog.csdnimg.cn/20200313153023226.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L21vZmVpNjI5,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<p>进入siteusers/urls.py文件配置用户注册的路由</p>
+<p><img src="https://img-blog.csdnimg.cn/20200313151058375.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L21vZmVpNjI5,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<p>迁移数据</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python manage.py migrate</span><br></pre></td></tr></table></figure>
+
+<h3 id="2-2-2使用postman测试用户注册的api"><a href="#2-2-2使用postman测试用户注册的api" class="headerlink" title="2.2.2使用postman测试用户注册的api"></a>2.2.2使用postman测试用户注册的api</h3><p>api接口：POST <a href="http://127.0.0.1:8000/api/v1/rest-auth/registration/" target="_blank" rel="noopener">http://127.0.0.1:8000/api/v1/rest-auth/registration/</a><br>使用post请求方式，进行用户注册，需要在Body里提交相应username,password1,password2,email（本次提交以raw的JSON格式），注册成功会返回key（即csrf_token）</p>
+<p><img src="https://img-blog.csdnimg.cn/20200313153840628.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L21vZmVpNjI5,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<h3 id="2-2-3权限问题解决"><a href="#2-2-3权限问题解决" class="headerlink" title="2.2.3权限问题解决"></a>2.2.3权限问题解决</h3><p>在用户注册后，重新使用获得用户列表的api进行获取时，出现了权限被拒的问题，原因是由于之前设置了csrf_token</p>
+<p><img src="https://img-blog.csdnimg.cn/20200313154153317.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L21vZmVpNjI5,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<p>未解决该权限问题，因此需要使用用户登录的api获得其返回的key(即csrf_token)，并配置在整个测试项目（在该测试项目右键点击Edit后弹出的窗口）的Authorization</p>
+<p>需要注意的是，每次项目重新运行后，csrf_token都会变化，因此需要重新进行登录操作获得新的key后进行更新</p>
+<p><img src="https://img-blog.csdnimg.cn/20200313154501134.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L21vZmVpNjI5,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2020/03/16/API-2/" data-id="ck7tvshcg00063srqgxo80la6" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Django-API/" rel="tag">Django API</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2020/03/16/API-3/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          API-3&#39;
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2020/03/16/API-1/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">API-1&#39;</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Django-API/" rel="tag">Django API</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/Django-API/" style="font-size: 10px;">Django API</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/03/">March 2020</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2020/03/16/API-3/">API-3&#39;</a>
+          </li>
+        
+          <li>
+            <a href="/2020/03/16/API-2/">API-2&#39;</a>
+          </li>
+        
+          <li>
+            <a href="/2020/03/16/API-1/">API-1&#39;</a>
+          </li>
+        
+          <li>
+            <a href="/2020/03/16/hello-world/">Hello World</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2020 John Doe<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+  </div>
+</body>
+</html>

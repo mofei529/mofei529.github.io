@@ -64,6 +64,270 @@
       <div class="outer">
         <section id="main">
   
+    <article id="&#39;django-API-3" class="article article-type-&#39;django" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/03/16/API-3/" class="article-date">
+  <time datetime="2020-03-16T02:55:50.000Z" itemprop="datePublished">2020-03-16</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/03/16/API-3/">API-3&#39;</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="学习来源"><a href="#学习来源" class="headerlink" title="学习来源"></a>学习来源</h1><p>网易云课堂：python全栈工程师微专业：Django章节的API内容</p>
+<h1 id="课程目标"><a href="#课程目标" class="headerlink" title="课程目标"></a>课程目标</h1><ul>
+<li>构建对网站内容的API：增、删、改、查<h2 id="1-创建posts应用，构建相应的API"><a href="#1-创建posts应用，构建相应的API" class="headerlink" title="1.创建posts应用，构建相应的API"></a>1.创建posts应用，构建相应的API</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python manage.py startapp posts</span><br></pre></td></tr></table></figure>
+<h3 id="1-1配置posts应用"><a href="#1-1配置posts应用" class="headerlink" title="1.1配置posts应用"></a>1.1配置posts应用</h3>进入blog/settings.py文件配置INSTALLED_APPS</li>
+</ul>
+<p><img src="https://img-blog.csdnimg.cn/20200313155328813.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L21vZmVpNjI5,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<p>进入blog/urls.py文件配置posts的api路由（需要先在posts目录下新建urls.py文件）</p>
+<p><img src="https://img-blog.csdnimg.cn/20200313155456974.png" alt="在这里插入图片描述"></p>
+<h3 id="1-2为posts应用编写模型"><a href="#1-2为posts应用编写模型" class="headerlink" title="1.2为posts应用编写模型"></a>1.2为posts应用编写模型</h3><p>进入posts/models.py编写应用的模型</p>
+<p><img src="https://img-blog.csdnimg.cn/20200313155855180.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L21vZmVpNjI5,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<h3 id="1-3生成样例数据，方便后续测试"><a href="#1-3生成样例数据，方便后续测试" class="headerlink" title="1.3生成样例数据，方便后续测试"></a>1.3生成样例数据，方便后续测试</h3><p>进入posts/admin.py文件，把创建的模型类进行注册，增加到管理项目，方便使用admin界面登录后，发布一些博客内容，方便后续测试使用</p>
+<p><img src="https://img-blog.csdnimg.cn/20200313160216740.png" alt="在这里插入图片描述"></p>
+<h3 id="1-4为posts应用构造api"><a href="#1-4为posts应用构造api" class="headerlink" title="1.4为posts应用构造api"></a>1.4为posts应用构造api</h3><p>在posts目录下创建名为api的子目录，并在api子目录下创建serializers.py及views.py文件</p>
+<ul>
+<li>serializers.py (序列化文件：将对象重构)<br>在文件内将要读取的博客文章的内容序列化</li>
+</ul>
+<p><img src="https://img-blog.csdnimg.cn/20200313161212550.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L21vZmVpNjI5,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<ul>
+<li>views.py(api接口的视图文件)</li>
+</ul>
+<p><img src="https://img-blog.csdnimg.cn/20200313161554884.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L21vZmVpNjI5,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<p><img src="https://img-blog.csdnimg.cn/20200313161923375.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L21vZmVpNjI5,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<p><img src="https://img-blog.csdnimg.cn/20200313161936942.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L21vZmVpNjI5,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<h3 id="1-5为API配置路由"><a href="#1-5为API配置路由" class="headerlink" title="1.5为API配置路由"></a>1.5为API配置路由</h3><p>进入posts的urls.py文件，配置相应的接口路由</p>
+<p><img src="https://img-blog.csdnimg.cn/2020031316231618.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L21vZmVpNjI5,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<h2 id="2-对构建的API进行测试"><a href="#2-对构建的API进行测试" class="headerlink" title="2.对构建的API进行测试"></a>2.对构建的API进行测试</h2><p>测试之前，先打开用户登录的接口进行登录，获取返回的key后，为该测试项目配置Authorization</p>
+<h3 id="2-1获取博客文章列表的接口测试"><a href="#2-1获取博客文章列表的接口测试" class="headerlink" title="2.1获取博客文章列表的接口测试"></a>2.1获取博客文章列表的接口测试</h3><p>api接口：GET <a href="http://127.0.0.1:8000/api/posts/" target="_blank" rel="noopener">http://127.0.0.1:8000/api/posts/</a></p>
+<p>使用get请求，获取博客文章列表的内容</p>
+<p><img src="https://img-blog.csdnimg.cn/20200313162924665.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L21vZmVpNjI5,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<h3 id="2-2创建博客文章的接口测试"><a href="#2-2创建博客文章的接口测试" class="headerlink" title="2.2创建博客文章的接口测试"></a>2.2创建博客文章的接口测试</h3><p>api接口： POST <a href="http://127.0.0.1:8000/api/posts/create/" target="_blank" rel="noopener">http://127.0.0.1:8000/api/posts/create/</a></p>
+<p>使用post请求，进行文章创建，需要在Body里提交相应title，content（本次提交以x-www-form-urlencoded方式），在Headers里设置提交的两个字段的value为application/x-www-form-urlencoded，发布成功会返回该文章的详情</p>
+<p><img src="https://img-blog.csdnimg.cn/20200313163652616.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L21vZmVpNjI5,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<p><img src="https://img-blog.csdnimg.cn/20200313163714253.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L21vZmVpNjI5,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<h3 id="2-3获取某一篇博客文章的内容的接口测试"><a href="#2-3获取某一篇博客文章的内容的接口测试" class="headerlink" title="2.3获取某一篇博客文章的内容的接口测试"></a>2.3获取某一篇博客文章的内容的接口测试</h3><p>api接口：GET <a href="http://127.0.0.1:8000/api/posts/7/" target="_blank" rel="noopener">http://127.0.0.1:8000/api/posts/7/</a></p>
+<p>使用get请求，获取指定的某一篇博客文章（即在获取博客文章列表的api后，增加该博客文章的id）</p>
+<p><img src="https://img-blog.csdnimg.cn/2020031316405676.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L21vZmVpNjI5,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<h3 id="2-4修改某一篇博客文章的内容的接口测试"><a href="#2-4修改某一篇博客文章的内容的接口测试" class="headerlink" title="2.4修改某一篇博客文章的内容的接口测试"></a>2.4修改某一篇博客文章的内容的接口测试</h3><p>api接口：PATCH <a href="http://127.0.0.1:8000/api/posts/7/" target="_blank" rel="noopener">http://127.0.0.1:8000/api/posts/7/</a></p>
+<p>使用patch请求，针对指定的博客文章的api进行提交，需要在Body里提交相应title，content（本次提交以x-www-form-urlencoded方式），在Headers里设置提交的两个字段的value为application/x-www-form-urlencoded，修改成功后会返回文章内容</p>
+<p><img src="https://img-blog.csdnimg.cn/20200313164504189.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L21vZmVpNjI5,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<p><img src="https://img-blog.csdnimg.cn/20200313164747655.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L21vZmVpNjI5,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<h3 id="2-5删除某一篇博客文章的接口测试"><a href="#2-5删除某一篇博客文章的接口测试" class="headerlink" title="2.5删除某一篇博客文章的接口测试"></a>2.5删除某一篇博客文章的接口测试</h3><p>api接口：DELETE <a href="http://127.0.0.1:8000/api/posts/7/" target="_blank" rel="noopener">http://127.0.0.1:8000/api/posts/7/</a></p>
+<p>使用delete请求，针对要删除的博客文章的api进行删除，删除成功后会返回”Successfully deleted”</p>
+<p><img src="https://img-blog.csdnimg.cn/20200313165010505.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L21vZmVpNjI5,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2020/03/16/API-3/" data-id="ck7tvshc600013srq9cfccxi8" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Django-API/" rel="tag">Django API</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="&#39;django-API-2" class="article article-type-&#39;django" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/03/16/API-2/" class="article-date">
+  <time datetime="2020-03-16T02:55:47.000Z" itemprop="datePublished">2020-03-16</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/03/16/API-2/">API-2&#39;</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="学习来源"><a href="#学习来源" class="headerlink" title="学习来源"></a>学习来源</h1><p>网易云课堂：python全栈工程师微专业：Django章节的API内容</p>
+<h1 id="课程目标"><a href="#课程目标" class="headerlink" title="课程目标"></a>课程目标</h1><ul>
+<li>了解REST的含义</li>
+<li>用户登录和退出</li>
+<li>用户注册<h2 id="1-REST"><a href="#1-REST" class="headerlink" title="1.REST"></a>1.REST</h2><h3 id="1-1-概念介绍"><a href="#1-1-概念介绍" class="headerlink" title="1.1 概念介绍"></a>1.1 概念介绍</h3><img src="https://img-blog.csdnimg.cn/20200313145604338.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L21vZmVpNjI5,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br><img src="https://img-blog.csdnimg.cn/20200313145742192.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L21vZmVpNjI5,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述">)<img src="https://img-blog.csdnimg.cn/2020031314593764.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L21vZmVpNjI5,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br><img src="https://img-blog.csdnimg.cn/20200313150038593.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L21vZmVpNjI5,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><h2 id="2-用户权限的API"><a href="#2-用户权限的API" class="headerlink" title="2.用户权限的API"></a>2.用户权限的API</h2><h3 id="2-1使用第三方应用django-rest-auth"><a href="#2-1使用第三方应用django-rest-auth" class="headerlink" title="2.1使用第三方应用django-rest-auth"></a>2.1使用第三方应用django-rest-auth</h3><h4 id="2-1-1-django-rest-auth简介"><a href="#2-1-1-django-rest-auth简介" class="headerlink" title="2.1.1 django-rest-auth简介"></a>2.1.1 django-rest-auth简介</h4></li>
+<li>RESTful的API</li>
+<li>基于django-rest-framework</li>
+<li>功能：用户注册、登录、退出、密码修改和重置、第三方登录<h4 id="2-1-2-安装与配置"><a href="#2-1-2-安装与配置" class="headerlink" title="2.1.2 安装与配置"></a>2.1.2 安装与配置</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip install django-rest-auth</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<p>进入blog/settings.py文件配置INSTALLED_APPS</p>
+<p><img src="https://img-blog.csdnimg.cn/20200313150847486.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L21vZmVpNjI5,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<p>进入blog/settings.py文件配置csrf_token</p>
+<p><img src="https://img-blog.csdnimg.cn/20200313151806101.png" alt="在这里插入图片描述"></p>
+<p>进入siteusers/urls.py文件配置登录、退出的路由</p>
+<p><img src="https://img-blog.csdnimg.cn/20200313151058375.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L21vZmVpNjI5,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<p>迁移数据</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python manage.py migrate</span><br></pre></td></tr></table></figure>
+
+<h3 id="2-1-3使用postman测试用户登录的api"><a href="#2-1-3使用postman测试用户登录的api" class="headerlink" title="2.1.3使用postman测试用户登录的api"></a>2.1.3使用postman测试用户登录的api</h3><p>api接口：POST <a href="http://127.0.0.1:8000/api/v1/rest-auth/login/" target="_blank" rel="noopener">http://127.0.0.1:8000/api/v1/rest-auth/login/</a><br>使用post请求方式，对该api接口进行登录，需要在Body里提交username及password（本次提交以raw的JSON格式），登录成功会返回key（即csrf_token）</p>
+<p><img src="https://img-blog.csdnimg.cn/20200313151946759.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L21vZmVpNjI5,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<h3 id="2-1-4使用postman测试用户退出的api"><a href="#2-1-4使用postman测试用户退出的api" class="headerlink" title="2.1.4使用postman测试用户退出的api"></a>2.1.4使用postman测试用户退出的api</h3><p>api接口：POST <a href="http://127.0.0.1:8000/api/v1/rest-auth/logout/" target="_blank" rel="noopener">http://127.0.0.1:8000/api/v1/rest-auth/logout/</a><br>使用post请求方式，进行用户退出，需要在Body里提交相应的username（本次提交以form-data方式），退出成功会返回”Successfully logged out.”</p>
+<p><img src="https://img-blog.csdnimg.cn/20200313152557252.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L21vZmVpNjI5,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<h2 id="2-2用户注册"><a href="#2-2用户注册" class="headerlink" title="2.2用户注册"></a>2.2用户注册</h2><h3 id="2-2-1安装与配置"><a href="#2-2-1安装与配置" class="headerlink" title="2.2.1安装与配置"></a>2.2.1安装与配置</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip install django-allauth</span><br></pre></td></tr></table></figure>
+
+<p>进入blog/settings.py文件配置INSTALLED_APPS</p>
+<p><img src="https://img-blog.csdnimg.cn/20200313153023226.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L21vZmVpNjI5,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<p>进入siteusers/urls.py文件配置用户注册的路由</p>
+<p><img src="https://img-blog.csdnimg.cn/20200313151058375.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L21vZmVpNjI5,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<p>迁移数据</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python manage.py migrate</span><br></pre></td></tr></table></figure>
+
+<h3 id="2-2-2使用postman测试用户注册的api"><a href="#2-2-2使用postman测试用户注册的api" class="headerlink" title="2.2.2使用postman测试用户注册的api"></a>2.2.2使用postman测试用户注册的api</h3><p>api接口：POST <a href="http://127.0.0.1:8000/api/v1/rest-auth/registration/" target="_blank" rel="noopener">http://127.0.0.1:8000/api/v1/rest-auth/registration/</a><br>使用post请求方式，进行用户注册，需要在Body里提交相应username,password1,password2,email（本次提交以raw的JSON格式），注册成功会返回key（即csrf_token）</p>
+<p><img src="https://img-blog.csdnimg.cn/20200313153840628.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L21vZmVpNjI5,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<h3 id="2-2-3权限问题解决"><a href="#2-2-3权限问题解决" class="headerlink" title="2.2.3权限问题解决"></a>2.2.3权限问题解决</h3><p>在用户注册后，重新使用获得用户列表的api进行获取时，出现了权限被拒的问题，原因是由于之前设置了csrf_token</p>
+<p><img src="https://img-blog.csdnimg.cn/20200313154153317.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L21vZmVpNjI5,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<p>未解决该权限问题，因此需要使用用户登录的api获得其返回的key(即csrf_token)，并配置在整个测试项目（在该测试项目右键点击Edit后弹出的窗口）的Authorization</p>
+<p>需要注意的是，每次项目重新运行后，csrf_token都会变化，因此需要重新进行登录操作获得新的key后进行更新</p>
+<p><img src="https://img-blog.csdnimg.cn/20200313154501134.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L21vZmVpNjI5,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2020/03/16/API-2/" data-id="ck7tvshcg00063srqgxo80la6" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Django-API/" rel="tag">Django API</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="&#39;django-API-1" class="article article-type-&#39;django" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/03/16/API-1/" class="article-date">
+  <time datetime="2020-03-16T02:35:11.000Z" itemprop="datePublished">2020-03-16</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/03/16/API-1/">API-1&#39;</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="学习来源"><a href="#学习来源" class="headerlink" title="学习来源"></a>学习来源</h1><p>网易云课堂：python全栈工程师微专业：Django章节的API内容</p>
+<h1 id="课程目标"><a href="#课程目标" class="headerlink" title="课程目标"></a>课程目标</h1><ul>
+<li>理解API的概念</li>
+<li>初步了解Django REST framework的应用</li>
+</ul>
+<h2 id="1-API"><a href="#1-API" class="headerlink" title="1.API"></a>1.API</h2><h3 id="1-1名词解释"><a href="#1-1名词解释" class="headerlink" title="1.1名词解释"></a>1.1名词解释</h3><p><img src="https://img-blog.csdnimg.cn/20200313104818434.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L21vZmVpNjI5,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br><img src="https://img-blog.csdnimg.cn/20200313104904911.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L21vZmVpNjI5,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<h3 id="1-2API举例"><a href="#1-2API举例" class="headerlink" title="1.2API举例"></a>1.2API举例</h3><p>通过GET请求，获取github的用户信息接口<br>GET: <a href="https://api.github.com/users/mofei529" target="_blank" rel="noopener">https://api.github.com/users/mofei529</a></p>
+<ul>
+<li><p>调试方法1：用网页进行请求</p>
+<p><img src="https://img-blog.csdnimg.cn/20200313105252936.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L21vZmVpNjI5,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+</li>
+<li><p>调试方法2：用python中的requests库进行请求</p>
+</li>
+</ul>
+<p><img src="https://img-blog.csdnimg.cn/20200313105537993.png" alt="在这里插入图片描述"></p>
+<ul>
+<li>调试方法3（工程方法）：使用专用工具postman进行请求</li>
+<li><a href="https://www.getpostman.com" target="_blank" rel="noopener">postman下载地址</a><br><img src="https://img-blog.csdnimg.cn/2020031311054691.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L21vZmVpNjI5,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></li>
+</ul>
+<h2 id="2-Django项目的API"><a href="#2-Django项目的API" class="headerlink" title="2.Django项目的API"></a>2.Django项目的API</h2><h3 id="2-1创建项目"><a href="#2-1创建项目" class="headerlink" title="2.1创建项目"></a>2.1创建项目</h3><h4 id="2-1-1创建虚拟环境-以windows环境，使用python的virtualenv库为例"><a href="#2-1-1创建虚拟环境-以windows环境，使用python的virtualenv库为例" class="headerlink" title="2.1.1创建虚拟环境(以windows环境，使用python的virtualenv库为例)"></a>2.1.1创建虚拟环境(以windows环境，使用python的virtualenv库为例)</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">python -m  venv djapi</span><br><span class="line">cd djapi&#x2F;Scripts</span><br><span class="line">activate</span><br></pre></td></tr></table></figure>
+
+<p>安装Django2.2版本</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip install django&#x3D;&#x3D;2.2</span><br></pre></td></tr></table></figure>
+<h4 id="2-1-2创建项目"><a href="#2-1-2创建项目" class="headerlink" title="2.1.2创建项目"></a>2.1.2创建项目</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">django-admin startproject blog</span><br></pre></td></tr></table></figure>
+
+<p>同步数据库</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python manage.py migrate</span><br></pre></td></tr></table></figure>
+
+<p>创建超级管理员</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python manage.py createsuperuser</span><br></pre></td></tr></table></figure>
+
+<p>运行项目</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python manage.py runserver</span><br></pre></td></tr></table></figure>
+
+<p>访问管理界面，新增一些用户数据作为api开发测试使用</p>
+<p>访问：<a href="http://localhost:8000/admin" target="_blank" rel="noopener">http://localhost:8000/admin</a></p>
+<h4 id="2-1-3安装Django-REST-Framework框架"><a href="#2-1-3安装Django-REST-Framework框架" class="headerlink" title="2.1.3安装Django REST Framework框架"></a>2.1.3安装Django REST Framework框架</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">pip install djangorestframework</span><br><span class="line">pip install markdown</span><br><span class="line">pip install django-filter</span><br></pre></td></tr></table></figure>
+<h4 id="2-1-4django项目配置应用"><a href="#2-1-4django项目配置应用" class="headerlink" title="2.1.4django项目配置应用"></a>2.1.4django项目配置应用</h4><p>创建应用</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python manage.py startapp siteusers</span><br></pre></td></tr></table></figure>
+
+<p>进入blog/settings.py文件配置INSTALLED_APPS</p>
+<p><img src="https://img-blog.csdnimg.cn/20200313133333350.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L21vZmVpNjI5,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<p>进入blog/urls.py文件配置api的路由</p>
+<p><img src="https://img-blog.csdnimg.cn/20200313133533483.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L21vZmVpNjI5,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<h4 id="2-1-5为siteusers应用构造api"><a href="#2-1-5为siteusers应用构造api" class="headerlink" title="2.1.5为siteusers应用构造api"></a>2.1.5为siteusers应用构造api</h4><p>在siteusers目录下创建名为api的子目录，并在api子目录下创建serializers.py及views.py文件</p>
+<ul>
+<li>serializers.py (序列化文件：将对象重构)，作用如下：<br>将queryset与model实例等进行序列化，转化成json格式，返回给用户(api接口)<br>将post与patch/put的上来的数据进行验证<br>对post与patch/put数据进行处理!</li>
+</ul>
+<p><img src="https://img-blog.csdnimg.cn/2020031314140533.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L21vZmVpNjI5,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<ul>
+<li>views.py(api接口的视图文件)</li>
+<li><img src="https://img-blog.csdnimg.cn/20200313142030934.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L21vZmVpNjI5,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></li>
+</ul>
+<h4 id="2-1-6为API配置路由"><a href="#2-1-6为API配置路由" class="headerlink" title="2.1.6为API配置路由"></a>2.1.6为API配置路由</h4><p>在siteusers目录下创建urls.py文件</p>
+<p><img src="https://img-blog.csdnimg.cn/20200313142758619.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L21vZmVpNjI5,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<h3 id="2-2API测试"><a href="#2-2API测试" class="headerlink" title="2.2API测试"></a>2.2API测试</h3><ul>
+<li>通过浏览器的get请求获得api返回的数据</li>
+</ul>
+<p><img src="https://img-blog.csdnimg.cn/20200313143331594.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L21vZmVpNjI5,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<ul>
+<li><p>在postman中测试api</p>
+<p>获取用户列表!</p>
+</li>
+</ul>
+<p><img src="https://img-blog.csdnimg.cn/20200313144720796.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L21vZmVpNjI5,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<p>获取某一个用户的详情</p>
+<p><img src="https://img-blog.csdnimg.cn/20200313144831659.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L21vZmVpNjI5,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2020/03/16/API-1/" data-id="ck7tvshc100003srq3cqd5nv2" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Django-API/" rel="tag">Django API</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-hello-world" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2020/03/16/hello-world/" class="article-date">
@@ -123,9 +387,23 @@
 
   
     
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Django-API/" rel="tag">Django API</a></li></ul>
+    </div>
+  </div>
+
 
   
     
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/Django-API/" style="font-size: 10px;">Django API</a>
+    </div>
+  </div>
+
   
     
   <div class="widget-wrap">
@@ -142,6 +420,18 @@
     <h3 class="widget-title">Recent Posts</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="/2020/03/16/API-3/">API-3&#39;</a>
+          </li>
+        
+          <li>
+            <a href="/2020/03/16/API-2/">API-2&#39;</a>
+          </li>
+        
+          <li>
+            <a href="/2020/03/16/API-1/">API-1&#39;</a>
+          </li>
         
           <li>
             <a href="/2020/03/16/hello-world/">Hello World</a>
